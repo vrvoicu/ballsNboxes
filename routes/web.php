@@ -16,4 +16,4 @@
 //});
 
 Route::get('/', 'BallsNBoxesController@index');
-Route::post('/', 'BallsNBoxesController@index');
+Route::post('/', 'BallsNBoxesController@post');
