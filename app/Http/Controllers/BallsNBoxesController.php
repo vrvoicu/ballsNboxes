@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\BallsNBoxesSolver;
 use App\Http\Requests\ColorsNBallsFormValidator;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Support\MessageProvider;
+use Illuminate\Support\Facades\Validator;
 
 class BallsNBoxesController extends Controller
 {
@@ -24,10 +25,21 @@ class BallsNBoxesController extends Controller
 
         preg_match_all('/\S=\d+/', $colorsNBallsList, $matches, PREG_PATTERN_ORDER);
 
+        $nrColors = 0; $nrOfBalls = 0;
         foreach ($matches[0] as $matchKey => $match) {
             unset($matches[$matchKey]);
             $colorNBalls = explode("=", $match);
             $matches[reset($colorNBalls)] = intval(end($colorNBalls));
+
+            $nrColors++;
+            $nrOfBalls += intval(end($colorNBalls));
+        }
+
+        if($nrColors * $nrColors != $nrOfBalls) {
+
+            return view('ballsNboxes.index', [
+                'colorsNBallsList' => $colorsNBallsList,
+            ])->withErrors(['colorsNBallsList' => 'Total number of balls should be the number of colors squared']);
         }
 
         $boxes = $ballsNBoxesSolver->solve($matches);
