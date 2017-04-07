@@ -6,7 +6,9 @@
  * Time: 00:33
  */
 
-/* @var $colorsNBallsList string */
+/* @var string $colorsNBallsList */
+/* @var array $boxes */
+
 
 ?>
 
@@ -28,5 +30,19 @@
 
         {{ csrf_field() }}
     </form>
+
+    @if(isset($boxes))
+        <div style="padding: 10px 0 10px 0">
+
+        @foreach($boxes as $boxIndex => $box)
+            <?= 'Box: ' . $boxIndex ?>
+            @foreach($box as $color => $number)
+                <?= $color . ':' . $number ?>
+            @endforeach
+            <?= '<br/>' ?>
+        @endforeach
+
+        </div>
+    @endif
 
 @endsection
