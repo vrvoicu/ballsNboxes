@@ -35,7 +35,7 @@
         <div style="padding: 10px 0 10px 0">
 
         @foreach($boxes as $boxIndex => $box)
-            <?= 'Box: ' . $boxIndex ?>
+            <?= 'Box: ' . ($boxIndex + 1) ?>
             @foreach($box as $color => $number)
                 <?= $color . ':' . $number ?>
             @endforeach

@@ -1,3 +1,24 @@
+### Request
+
+Given n different colors, n boxes and nxn balls with a random distribution, find a way to fill every box given the rule that only a maximum of 2 different colors can be put in one box and each box should have n balls.
+
+
+### Algorithm
+<p>Given that the number of balls is n squared by adding one ball to any color results in a different color having one less.</p> 
+
+<p>Generally by adding more than one ball to any color the total number of balls missing from the orther colors is equal to the amount added to the first. </p>
+
+<p>This means that for colors with a number of balls smaller than n (needed to fill a box) you can find a complementary in the existing colors with balls bigger than n</p>
+
+<p>What the algorithm does</p>
+
+Gets the color with the smallest amount of balls (smaller or equal than n)
+ 
+1. if the number of balls for the color is equal to n then there's no need for a complementary so it just puts it in its own box, resulting in n - 1 colors and n - 1 boxes
+2. if the number of balls for the color is smaller than n it complements it with balls from the color with the most balls and puts them in a box (!this could also mean that the resulting number of balls in the second color can be smaller than n thus becoming a color that will be chosen to be complemented), this resulting in n - 1 colors and n -1 boxes (again).
+
+#### Powered by
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
@@ -7,34 +28,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
+#### License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
